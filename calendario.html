@@ -2,97 +2,122 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <!-- RIGA DA AGGIUNGERE: Forza il caricamento di tutte le immagini e link in HTTPS -->
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<title>Classifiche Nuoto - Calendario Gare</title>
-<style>
-  body {
-    margin: 0;
-    padding: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
-    background-image: url("https://wallpapers.com/images/featured/sfondo-di-acqua-di-piscina-am94qlj0a89gmo8j.jpg");
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: repeat;  
-    color: #070674;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  <title>Classifiche Nuoto - Calendario Gare</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+      background-image: url("https://wallpapers.com/images/featured/sfondo-di-acqua-di-piscina-am94qlj0a89gmo8j.jpg");
+      background-size: cover;        
+      background-position: center;   
+      background-repeat: repeat;  
+      color: #070674;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  h1 { 
-    margin-top: 30px; 
-    margin-bottom: 20px;
-    text-align: center;    
-    font-size: 3rem;        
-    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
-  }
+    h1 { 
+      margin-top: 30px; 
+      margin-bottom: 20px;
+      text-align: center;    
+      font-size: 3rem;        
+      text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+    }
 
-  a.homepage-link {
-    display: block;
-    text-align: center;     
-    margin-top: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #0e289c;
-    font-size: 1.2rem;
-  }
-  a.homepage-link:hover {
-    color: #081146;
-    text-decoration: underline;
-  }
+    a.homepage-link {
+      display: block;
+      text-align: center;     
+      margin-top: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #0e289c;
+      font-size: 1.2rem;
+    }
+    a.homepage-link:hover {
+      color: #081146;
+      text-decoration: underline;
+    }
 
-  /* Contenitore centrato per le gare */
-  .calendario-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    gap: 15px;
-  }
+    /* Contenitore centrato per le gare */
+    .calendario-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 800px;
+      gap: 15px;
+    }
 
-  /* Scheda centrata per ciascuna gara */
-  .gara-card { 
-    width: 90%; 
-    padding: 16px 20px;
-    background-color: #ffffffd8; 
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    font-size: 1.35rem;
-    font-weight: bold;
-    text-transform: uppercase; /* Trasforma automaticamente il testo in MAIUSCOLO */
-    color: #040b66;
-    border: 2px solid #002f6d;
-    box-sizing: border-box;
-  }
+    /* Scheda cliccabile per ciascuna gara */
+    a.gara-card { 
+      display: block;
+      text-decoration: none;
+      width: 90%; 
+      padding: 16px 20px;
+      background-color: #ffffffd8; 
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #040b66;
+      border: 2px solid #002f6d;
+      box-sizing: border-box;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
 
-  table { 
-    border-collapse: collapse; 
-    width: 80%; 
-    max-width: 600px;
-    margin-top: 20px;
-    background-color: #ffffff7e; 
-  }
-  th, td { 
-    border: 1px solid #c4c4c4; 
-    padding: 8px; 
-    text-align: center; 
-  }
-</style>
+    a.gara-card:hover {
+      background-color: #e0f2fe;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      border-color: #0040aa;
+    }
+
+    table { 
+      border-collapse: collapse; 
+      width: 80%; 
+      max-width: 600px;
+      margin-top: 20px;
+      background-color: #ffffff7e; 
+    }
+    th, td { 
+      border: 1px solid #c4c4c4; 
+      padding: 8px; 
+      text-align: center; 
+    }
+  </style>
 </head>
 <body>
 
   <h1>CALENDARIO GARE 2026-2027</h1>
 
   <div class="calendario-container">
-    <div class="gara-card">24-25 OTTOBRE 2026: COPPA LOS ANGELES (1ª TAPPA), TORINO</div>
-    <div class="gara-card">7-8 NOVEMBRE 2026: COPPA LOS ANGELES (2ª TAPPA), TORINO</div>
+    <!-- Per aggiungere altre gare, duplica la riga qui sotto e cambia "data-gara" con il nome esatto nel CSV -->
+    <a href="#" class="gara-card" data-gara="2ª Tappa Coppa Los Angeles 2026/2027">
+      7-8 NOVEMBRE 2026: COPPA LOS ANGELES (2ª TAPPA), TORINO
+    </a>
+    <a href="#" class="gara-card" data-gara="Trofeo Filippa">
+      15 NOVEMBRE 2026: TROFEO FILIPPA, PINEROLO
+    </a>
   </div>
 
   <a href="homepage.html" class="homepage-link">Torna alla Homepage</a>
+
+  <script>
+    // Genera automaticamente il link codificato verso ricerca_competizioni.html
+    document.querySelectorAll('.gara-card').forEach(link => {
+      const nomeGara = link.getAttribute('data-gara');
+      if (nomeGara) {
+        link.href = `ricerca_competizioni.html?gara=${encodeURIComponent(nomeGara)}`;
+      }
+    });
+  </script>
 
 </body>
 </html>

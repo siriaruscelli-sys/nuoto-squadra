@@ -2166,12 +2166,42 @@ Campionati Nazionali Estivi 2026 Giorno 3,Lucchese Camilla,50 Stile Libero,32.07
 Campionati Nazionali Estivi 2026 Giorno 3,Varolo Nicolò,50 Stile Libero lanciato,27.36,446,no
 Campionati Nazionali Estivi 2026 Giorno 3,Ingrosso Emma,50 Stile Libero lanciato,30.61,458,no
 Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato,26.07,515,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Belmare Diego,100 Stile Libero,58.47,451,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Belmare Diego,50 Farfalla,28.13,435,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Ingrosso Emma,100 Stile Libero,69.51,370,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Ingrosso Emma,50 Farfalla,34.36,328,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Lambertoni Giulia,50 Farfalla,37.08,261,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Lucchese Camilla,100 Stile Libero,67.16,410,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Minervini Giada,100 Stile Libero,72.92,321,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Oliaro Giulio,100 Stile Libero,53.53,587,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Oliaro Giulio,50 Farfalla,26.21,538,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Prudenzano Sofia,100 Stile Libero,78.35,258,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Ruscelli Siria,100 Stile Libero,65.71,438,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 1,Vignola Elena,100 Stile Libero,66.50,423,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Belmare Diego,50 Stile Libero,26.53,422,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,De Giorgi Alessandro,50 Stile Libero,26.72,413,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,De Giorgi Alessandro,50 Rana,33.03,431,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ingrosso Emma,50 Stile Libero,31.46,382,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Lambertoni Giulia,50 Stile Libero,34.80,282,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Lambertoni Giulia,50 Rana,42.82,290,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Lucchese Camilla,50 Stile Libero,31.41,383,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Lucchese Camilla,100 Dorso,79.44,314,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Minervini Giada,50 Stile Libero,33.19,325,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Minervini Giada,50 Rana,42.11,305,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Oliaro Giulio,50 Stile Libero,24.68,524,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Prudenzano Sofia,50 Stile Libero,35.64,262,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ruscelli Siria,50 Stile Libero,29.98,441,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ruscelli Siria,50 Rana,36.44,471,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,50 Stile Libero,29.35,470,no
+2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,100 Dorso,77.35,340,no
 </script>
 
 <script>
 const inizio_stagione_23_24 = new Date("2023-09-01");
 const inizio_stagione_24_25 = new Date("2024-09-01");
 const inizio_stagione_25_26 = new Date("2025-09-01");
+const inizio_stagione_26_27 = new Date("2026-09-01");
+
 
 const mappaGare = {
   "apertura": {data: "2022-12-04", piscina: "Sisport", vasca: 25},
@@ -2250,6 +2280,8 @@ const mappaGare = {
   "campionati nazionali estivi 2026 giorno 1": {data: "2026-06-12", piscina: "Riccione", vasca: 50},
   "campionati nazionali estivi 2026 giorno 2": {data: "2026-06-13", piscina: "Riccione", vasca: 50},
   "campionati nazionali estivi 2026 giorno 3": {data: "2026-06-14", piscina: "Riccione", vasca: 50},
+  "2ª tappa coppa los angeles 2026/2027 giorno 1": {data: "2026-11-07", piscina: "Palazzo del Nuoto", vasca: 25},
+  "2ª tappa coppa los angeles 2026/2027 giorno 2": {data: "2026-11-08", piscina: "Sisport", vasca: 25},
 };
 
 // Rimuove "lanciato/lanciati" dal tipo di gara per la visualizzazione
@@ -2282,7 +2314,7 @@ function getSessoCategoria(nome, dataStr) {
   }
   if (["Ichim Alexandra","Ruscelli Siria","Ferrero Miriam","Cecire Vittoria","Prudenzano Sofia"].includes(nome))
     return { sesso: "Femmine", categoria: data<inizio_stagione_24_25 ? "Juniores" : "Assoluti" };
-  if (nome==="Oliaro Giulio") return { sesso: "Maschi", categoria: data<inizio_stagione_24_25 ? "Ragazzi" : "Juniores" };
+if (nome === "Oliaro Giulio") return { sesso: "Maschi", categoria: data < inizio_stagione_24_25 ? "Ragazzi" : (data < inizio_stagione_26_27 ? "Juniores" : "Assoluti") };
   if (nome==="Belmare Diego") return { sesso: "Maschi", categoria: data<inizio_stagione_25_26 ? "Ragazzi" : "Juniores" };
   if (nome==="Oliaro Pietro") return { sesso: "Maschi", categoria: "Juniores" };
   if (nome==="Varolo Nicolò") return { sesso: "Maschi", categoria: "Juniores" };
@@ -2351,7 +2383,7 @@ const contenuto = document.getElementById("contenuto");
         html+="<th>Gara</th><th>Tempo</th><th>Atleta</th><th>Competizione</th><th>Data</th><th>Piscina</th></tr></thead><tbody>";
         perCat.forEach(r=>{
           // 🔸 Evidenzia le righe delle gare "Coppa Los Angeles 2025/2026"
-          const evidenzia = r.competizione.toLowerCase().includes("campionati nazionali estivi 2026");
+          const evidenzia = r.competizione.toLowerCase().includes("2ª tappa coppa los angeles 2026/2027");
           const style = evidenzia ? 'style="background-color: yellow;"' : "";
 
           html+=`<tr ${style}>
