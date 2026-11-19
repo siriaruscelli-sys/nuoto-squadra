@@ -2392,6 +2392,43 @@ Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ruscelli Siria,50 Rana,36.44,471,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,50 Stile Libero,29.35,470,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,100 Dorso,77.35,340,no
+Trofeo Filippa,Belmare Diego,50 Farfalla,27.99,441,argento
+Trofeo Filippa,Belmare Diego,50 Stile Libero,26.13,441,argento
+Trofeo Filippa,Bolognesi Lorenzo,50 Rana,39.81,246,no
+Trofeo Filippa,Bolognesi Lorenzo,50 Stile Libero,31.07,262,no
+Trofeo Filippa,De Giorgi Alessandro,50 Farfalla,29.95,360,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana,33.08,429,oro
+Trofeo Filippa,Ingrosso Emma,50 Farfalla,35.44,299,no
+Trofeo Filippa,Ingrosso Emma,200 Stile Libero,157.38,335,no
+Trofeo Filippa,Lambertoni Giulia,50 Farfalla,37.21,259,no
+Trofeo Filippa,Lambertoni Giulia,50 Stile Libero,34.45,291,no
+Trofeo Filippa,Lucchese Camilla,200 Stile Libero,146.09,419,argento
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.42,361,bronzo
+Trofeo Filippa,Marchesi Tommaso,50 Dorso,33.98,275,oro
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero,28.33,346,argento
+Trofeo Filippa,Minervini Giada,50 Rana,41.61,316,no
+Trofeo Filippa,Minervini Giada,50 Stile Libero,32.42,349,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla,25.55,581,oro
+Trofeo Filippa,Oliaro Giulio,200 Stile Libero,122.78,518,oro
+Trofeo Filippa,Popescu Alejandro,50 Farfalla,34.82,229,no
+Trofeo Filippa,Popescu Alejandro,50 Stile Libero,29.40,310,bronzo
+Trofeo Filippa,Prudenzano Sofia,50 Dorso,44.71,179,no
+Trofeo Filippa,Prudenzano Sofia,50 Stile Libero,36.15,251,no
+Trofeo Filippa,Ruscelli Siria,50 Rana,36.63,464,oro
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero,29.94,443,no
+Trofeo Filippa,Vignola Elena,50 Dorso,33.66,421,oro
+Trofeo Filippa,Vignola Elena,50 Stile Libero,29.79,450,bronzo
+Trofeo Filippa,Lucchese Camilla,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Minervini Giada,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Belmare Diego,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Marchesi Tommaso,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.85,348,no
+Trofeo Filippa,Minervini Giada,50 Rana lanciato,40.76,337,no
+Trofeo Filippa,Belmare Diego,50 Farfalla lanciato,27.46,468,no
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero lanciato,27.35,385,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana lanciato,31.81,482,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla lanciato,25.16,608,no
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero lanciato,29.36,470,no
 </script>
 
 <!-- INFO GARE -->
@@ -2474,7 +2511,8 @@ Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato
   "campionati nazionali estivi 2026 giorno 2": { "data": "2026-06-13", "piscina": "Riccione", "vasca": 50 },
   "campionati nazionali estivi 2026 giorno 3": { "data": "2026-06-14", "piscina": "Riccione", "vasca": 50 },
   "2ª tappa coppa los angeles 2026/2027 giorno 1": { "data": "2026-11-07", "piscina": "Palazzo del Nuoto", "vasca": 25 },
-  "2ª tappa coppa los angeles 2026/2027 giorno 2": { "data": "2026-11-08", "piscina": "Sisport", "vasca": 25 }
+  "2ª tappa coppa los angeles 2026/2027 giorno 2": { "data": "2026-11-08", "piscina": "Sisport", "vasca": 25 },
+  "trofeo filippa": { "data": "2026-11-15", "piscina": "Pinerolo", "vasca": 25 }
 }
 </script>
 
@@ -2739,6 +2777,7 @@ const podiDatabase = podiRaw.map(riga => {
 function formattaTempo(t) {
     const val = parseFloat(t);
     if (isNaN(val)) return "--";
+    if (val === 0) return "SQ";
     if (val < 60) return val.toFixed(2);
     const minuti = Math.floor(val / 60);
     const secondi = (val % 60).toFixed(2).padStart(5,'0');
@@ -2911,7 +2950,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function analizzaPodiSuperati(staffetta) {
     const tStaffetta = parseFloat(staffetta.tempo);
-    if (isNaN(tStaffetta)) return { icona: "❌", podiBattuti: [], colore: "#e63946" };
+    if (isNaN(tStaffetta) || tStaffetta <= 0) return { icona: "❌", podiBattuti: [], colore: "#e63946" };
 
     const podiCompatibili = podiDatabase.filter(p => 
         normalizeKey(p.gara) === normalizeKey(staffetta.gara) &&
@@ -2933,8 +2972,8 @@ function analizzaPodiSuperati(staffetta) {
 
 function getTempoRecordSocietario(tipoGara, vasca) {
     const tutte = [
-        ...staffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoGara) && String(s.vasca) === String(vasca)),
-        ...masterStaffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoGara) && String(s.vasca) === String(vasca))
+        ...staffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoGara) && String(s.vasca) === String(vasca) && parseFloat(s.tempo) > 0),
+        ...masterStaffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoGara) && String(s.vasca) === String(vasca) && parseFloat(s.tempo) > 0)
     ];
     if (tutte.length === 0) return null;
     return Math.min(...tutte.map(s => parseFloat(s.tempo)));
@@ -2973,12 +3012,12 @@ function aggiornaTabella() {
         return;
     }
 
-    // 2. Crea una copia ordinata PER TEMPO CRESCENTE (dal migliore al peggiore) per la tabella
+    // 2. Crea una copia ordinata PER TEMPO CRESCENTE (dal migliore al peggiore, SQ in fondo)
     const risultatiOrdinatiPerTempo = [...risultati].sort((a, b) => {
         const tA = parseFloat(a.tempo);
         const tB = parseFloat(b.tempo);
-        if (isNaN(tA)) return 1;
-        if (isNaN(tB)) return -1;
+        if (isNaN(tA) || tA <= 0) return 1;
+        if (isNaN(tB) || tB <= 0) return -1;
         return tA - tB;
     });
 
@@ -2997,14 +3036,15 @@ function aggiornaTabella() {
         </thead>
         <tbody>`;
 
-    // 3. Genera la tabella usando l'array ordinato PER TEMPO
+    // 3. Genera la prima tabella (principale) evidenziando il Trofeo Filippa
     risultatiOrdinatiPerTempo.forEach((st, idx) => {
         st.frazionisti.sort((a,b) => a.ordine - b.ordine);
         const nomiAtleti = st.frazionisti.map(f => f.nome).join(", ");
         const podiInfo = analizzaPodiSuperati(st);
+        const tNum = parseFloat(st.tempo);
         
         const tempoRecordAssoluto = getTempoRecordSocietario(st.gara, st.vasca);
-        const isRecordSocietario = (tempoRecordAssoluto !== null && Math.abs(parseFloat(st.tempo) - tempoRecordAssoluto) < 0.001);
+        const isRecordSocietario = (tNum > 0 && tempoRecordAssoluto !== null && Math.abs(tNum - tempoRecordAssoluto) < 0.001);
 
         const cellaPodioHtml = (podiInfo.icona !== "❌") 
             ? `<span class="clickable-podio" onclick="togglePodio(${idx})">${podiInfo.icona} ▾</span>`
@@ -3012,21 +3052,26 @@ function aggiornaTabella() {
 
         const badgeHtml = isRecordSocietario ? `<span style="margin-left:-25px; margin-right:2px;">${getSvgBollinoRecord(100)}</span>` : "";
 
+        // EVIDENZIAZIONE TROFEO FILIPPA NELLA PRIMA TABELLA
+        const evidenzia = st.competizione.toLowerCase().includes("trofeo filippa");
+        const stileCella = evidenzia ? `style="background-color: #fef08a;"` : "";
+        const stileCellaCentro = evidenzia ? `style="text-align:center; background-color: #fef08a;"` : `style="text-align:center;"`;
+
         html += `
-            <tr>
-                <td>
+            <tr ${stileCella}>
+                <td ${stileCella}>
                     <div class="record-cell-container">
                         <strong>${st.gara}</strong>
                         ${badgeHtml}
                     </div>
                 </td>
-                <td><span class="clickable-time" onclick="toggleDettagli(${idx})">${formattaTempo(st.tempo)} ▾</span></td>
-                <td class="atleti-cell">${nomiAtleti}</td>
-                <td>${st.competizione}</td>
-                <td>${st.data}</td>
-                <td>${st.piscina}</td>
-                <td>${st.vasca !== "ND" ? st.vasca + "m" : "ND"}</td>
-                <td style="text-align:center;">${cellaPodioHtml}</td>
+                <td ${stileCella}><span class="clickable-time" onclick="toggleDettagli(${idx})">${formattaTempo(st.tempo)} ▾</span></td>
+                <td class="atleti-cell" ${stileCella}>${nomiAtleti}</td>
+                <td ${stileCella}>${st.competizione}</td>
+                <td ${stileCella}>${st.data}</td>
+                <td ${stileCella}>${st.piscina}</td>
+                <td ${stileCella}>${st.vasca !== "ND" ? st.vasca + "m" : "ND"}</td>
+                <td ${stileCellaCentro}>${cellaPodioHtml}</td>
             </tr>
             <tr id="details-${idx}" class="details-row" style="display:none;">
                 <td colspan="8">
@@ -3069,8 +3114,7 @@ function aggiornaTabella() {
         if (chartMessage) chartMessage.style.display = "block";
     } else {
         if (chartMessage) chartMessage.style.display = "none";
-        // 4. Passa al grafico l'array 'risultati' originale (verrà ordinato cronologicamente dentro disegnaGrafico)
-        disegnaGrafico(risultati, tipoScelto, vascaScelta);
+        disegnaGrafico(risultati.filter(r => parseFloat(r.tempo) > 0), tipoScelto, vascaScelta);
         generaClassificaTop5(tipoScelto, vascaScelta);
     }
 }
@@ -3104,7 +3148,7 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
     chartSection.style.display = "block";
     titleEl.textContent = `Andamento Tempi - ${tipoStaffetta} (Vasca ${vascaScelta}m)`;
 
-    const datiValidi = [...risultati].filter(r => !isNaN(parseFloat(r.tempo))).sort((a,b) => {
+    const datiValidi = [...risultati].filter(r => !isNaN(parseFloat(r.tempo)) && parseFloat(r.tempo) > 0).sort((a,b) => {
         if (a.data === "ND") return 1;
         if (b.data === "ND") return -1;
         return a.data.localeCompare(b.data);
@@ -3151,8 +3195,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
     const padLeft = 85;
     const padRight = 65;
     const padTop = 60;
-    
-    // MARGINE IN BASSO DEDICATO ALL'ASSE X E LE SUE ETICHETTE
     const padBottom = 220; 
 
     const tempiGare = datiValidi.map(d => parseFloat(d.tempo));
@@ -3187,7 +3229,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
 
     ctx.clearRect(0, 0, W, H);
 
-    // Griglia orizzontale asse Y
     ctx.strokeStyle = "#e2e8f0";
     ctx.lineWidth = 1;
     const numStepY = 16;
@@ -3205,7 +3246,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
         ctx.fillText(formattaTempo(val), padLeft - 10, y + 4);
     }
 
-    // LINEA CONTINUA DELL'ASSE X (SEPARATORE CONTINUO COLORE #070674)
     const yAsseX = H - padBottom;
     ctx.save();
     ctx.strokeStyle = "#070674";
@@ -3216,7 +3256,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
     ctx.stroke();
     ctx.restore();
 
-    // Linee Soglia Podi Nazionali
     lineSogliePodi = [];
 
     podiRilevanti.forEach(p => {
@@ -3272,7 +3311,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
         });
     });
 
-    // Tratti verticali tratteggiati
     gruppiPerData.forEach((g, i) => {
         if (g.gare.length > 1) {
             const puntiGruppo = allChartPoints.filter(p => p.groupIndex === i);
@@ -3292,7 +3330,6 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
         }
     });
 
-    // Segmenti principali
     if (mainPathPoints.length > 1) {
         for (let i = 0; i < mainPathPoints.length - 1; i++) {
             const p1 = mainPathPoints[i];
@@ -3307,12 +3344,10 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
         }
     }
 
-    // BOLLINO IMPOSTATO A 100PX PER IL GRAFICO CANVAS
     const imgBadge = new Image();
     imgBadge.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(getSvgBollinoRecord(100));
 
     allChartPoints.forEach((p) => {
-        // Pallino
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.isBest ? 7 : 5, 0, 2 * Math.PI);
         ctx.fillStyle = p.colore;
@@ -3321,34 +3356,30 @@ function disegnaGrafico(risultati, tipoStaffetta, vascaScelta) {
         ctx.strokeStyle = "#ffffff";
         ctx.stroke();
 
-        // Testo Tempo
         ctx.save();
         ctx.fillStyle = "#070674";
         ctx.textAlign = "center";
         ctx.font = "bold 12px sans-serif";
         ctx.fillText(formattaTempo(p.data.tempo), p.x, p.y - 14);
 
-        // Disegno del bollino da 100px sul Canvas
         if (p.isRecord) {
             ctx.drawImage(imgBadge, p.x + 18, p.y - 50, 100, 100);
         }
         ctx.restore();
     });
 
-    // ETICHETTE ASSE X SPOSTATE TOTALMENTE SOTTO LA LINEA DELL'ASSE X
     mainPathPoints.forEach((p) => {
         ctx.save();
-        ctx.translate(p.x, yAsseX + 15); // Punto di origine 15px sotto l'asse X
-        ctx.rotate(-Math.PI / 3);       // Inclinazione di 60 gradi verso il basso
+        ctx.translate(p.x, yAsseX + 15);
+        ctx.rotate(-Math.PI / 3);
         ctx.fillStyle = "#070674";
         ctx.font = "bold 12px sans-serif";
-        ctx.textAlign = "right";        // Il testo si sviluppa all'indietro a partire dall'asse X verso il basso
+        ctx.textAlign = "right";
         const labelStr = `${p.data.data} (${p.data.piscina})`;
         ctx.fillText(labelStr, 0, 0);
         ctx.restore();
     });
 
-    // Hover / Tooltip
     canvas.onmousemove = function(e) {
         const r = canvas.getBoundingClientRect();
         const mx = e.clientX - r.left;
@@ -3445,13 +3476,13 @@ function posizionaTooltipDinamico(tooltip, targetX, targetY, canvasWidth, canvas
     tooltip.style.top = `${posY}px`;
 }
 
-// GENERAZIONE CLASSIFICA TOP 5 CON EVIDENZIAZIONE VERDE PER LA NOSTRA SQUADRA
+// GENERAZIONE CLASSIFICA TOP 5 CON EVIDENZIAZIONE VERDE PER LA NOSTRA SQUADRA E GIALLA PER TROFEO FILIPPA
 function generaClassificaTop5(tipoStaffetta, vasca) {
     const container = document.getElementById("top5Content");
     if (!container) return;
 
-    const nostreCoerenti = staffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoStaffetta) && String(s.vasca) === String(vasca));
-    const masterCoerenti = masterStaffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoStaffetta) && String(s.vasca) === String(vasca));
+    const nostreCoerenti = staffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoStaffetta) && String(s.vasca) === String(vasca) && parseFloat(s.tempo) > 0);
+    const masterCoerenti = masterStaffetteList.filter(s => normalizeKey(s.gara) === normalizeKey(tipoStaffetta) && String(s.vasca) === String(vasca) && parseFloat(s.tempo) > 0);
 
     const tutte = [...nostreCoerenti, ...masterCoerenti];
 
@@ -3486,16 +3517,17 @@ function generaClassificaTop5(tipoStaffetta, vasca) {
             posStr = `<strong style="font-size:1.3rem;">${idx + 1}°</strong>`;
         }
 
-        // Se è una staffetta della nostra squadra applica la classe 'row-nostra-squadra' (sfondo verde)
-        // Se è dei Master applica 'row-master' (sfondo bianco)
         const rowClass = (!st.isMaster) ? "row-nostra-squadra" : "row-master";
+        const evidenzia = st.competizione.toLowerCase().includes("trofeo filippa");
+        const stileCella = evidenzia ? `style="background-color: #fef08a;"` : "";
+        const stileCellaPos = evidenzia ? `style="text-align:center; vertical-align:middle; background-color: #fef08a;"` : `style="text-align:center; vertical-align:middle;"`;
 
         html += `
-            <tr class="${rowClass}">
-                <td style="text-align:center; vertical-align:middle;">${posStr}</td>
-                <td><strong>${st.competizione}</strong></td>
-                <td><strong>${formattaTempo(st.tempo)}</strong></td>
-                <td>${st.data}</td>
+            <tr class="${rowClass}" ${stileCella}>
+                <td ${stileCellaPos}>${posStr}</td>
+                <td ${stileCella}><strong>${st.competizione}</strong></td>
+                <td ${stileCella}><strong>${formattaTempo(st.tempo)}</strong></td>
+                <td ${stileCella}>${st.data}</td>
             </tr>`;
     });
 

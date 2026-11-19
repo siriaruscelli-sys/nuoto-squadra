@@ -2215,6 +2215,43 @@ Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ruscelli Siria,50 Rana,36.44,471,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,50 Stile Libero,29.35,470,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,100 Dorso,77.35,340,no
+Trofeo Filippa,Belmare Diego,50 Farfalla,27.99,441,argento
+Trofeo Filippa,Belmare Diego,50 Stile Libero,26.13,441,argento
+Trofeo Filippa,Bolognesi Lorenzo,50 Rana,39.81,246,no
+Trofeo Filippa,Bolognesi Lorenzo,50 Stile Libero,31.07,262,no
+Trofeo Filippa,De Giorgi Alessandro,50 Farfalla,29.95,360,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana,33.08,429,oro
+Trofeo Filippa,Ingrosso Emma,50 Farfalla,35.44,299,no
+Trofeo Filippa,Ingrosso Emma,200 Stile Libero,157.38,335,no
+Trofeo Filippa,Lambertoni Giulia,50 Farfalla,37.21,259,no
+Trofeo Filippa,Lambertoni Giulia,50 Stile Libero,34.45,291,no
+Trofeo Filippa,Lucchese Camilla,200 Stile Libero,146.09,419,argento
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.42,361,bronzo
+Trofeo Filippa,Marchesi Tommaso,50 Dorso,33.98,275,oro
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero,28.33,346,argento
+Trofeo Filippa,Minervini Giada,50 Rana,41.61,316,no
+Trofeo Filippa,Minervini Giada,50 Stile Libero,32.42,349,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla,25.55,581,oro
+Trofeo Filippa,Oliaro Giulio,200 Stile Libero,122.78,518,oro
+Trofeo Filippa,Popescu Alejandro,50 Farfalla,34.82,229,no
+Trofeo Filippa,Popescu Alejandro,50 Stile Libero,29.40,310,bronzo
+Trofeo Filippa,Prudenzano Sofia,50 Dorso,44.71,179,no
+Trofeo Filippa,Prudenzano Sofia,50 Stile Libero,36.15,251,no
+Trofeo Filippa,Ruscelli Siria,50 Rana,36.63,464,oro
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero,29.94,443,no
+Trofeo Filippa,Vignola Elena,50 Dorso,33.66,421,oro
+Trofeo Filippa,Vignola Elena,50 Stile Libero,29.79,450,bronzo
+Trofeo Filippa,Lucchese Camilla,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Minervini Giada,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Belmare Diego,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Marchesi Tommaso,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.85,348,no
+Trofeo Filippa,Minervini Giada,50 Rana lanciato,40.76,337,no
+Trofeo Filippa,Belmare Diego,50 Farfalla lanciato,27.46,468,no
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero lanciato,27.35,385,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana lanciato,31.81,482,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla lanciato,25.16,608,no
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero lanciato,29.36,470,no
 </script>
 
 
@@ -2297,7 +2334,8 @@ Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato
   "campionati nazionali estivi 2026 giorno 2": { "data": "2026-06-13", "piscina": "Riccione", "vasca": 50 },
   "campionati nazionali estivi 2026 giorno 3": { "data": "2026-06-14", "piscina": "Riccione", "vasca": 50 },
   "2ª tappa coppa los angeles 2026/2027 giorno 1": { "data": "2026-11-07", "piscina": "Palazzo del Nuoto", "vasca": 25 },
-  "2ª tappa coppa los angeles 2026/2027 giorno 2": { "data": "2026-11-08", "piscina": "Sisport", "vasca": 25 }
+  "2ª tappa coppa los angeles 2026/2027 giorno 2": { "data": "2026-11-08", "piscina": "Sisport", "vasca": 25 },
+  "trofeo filippa": { "data": "2026-11-15", "piscina": "Pinerolo", "vasca": 25 }
 }
 
 </script>
@@ -2411,7 +2449,7 @@ function mostraRecord(){
                   </tr></thead><tbody>`;
         ordinati.forEach(r=>{
             // 🟨 Evidenzia Coppa Los Angeles 2025/2026
-            const evidenzia = r.gara.toLowerCase().includes("2ª tappa coppa los angeles 2026/2027");
+            const evidenzia = r.gara.toLowerCase().includes("trofeo filippa");
             const style = evidenzia ? 'style="background-color: yellow;"' : "";
 
             html+=`<tr ${style}>

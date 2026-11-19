@@ -2286,6 +2286,47 @@ Campionati Nazionali Estivi 2026 Giorno 3,Belmare Diego,50 Stile Libero lanciato
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Ruscelli Siria,50 Rana,36.44,471,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,50 Stile Libero,29.35,470,no
 2ª Tappa Coppa Los Angeles 2026/2027 Giorno 2,Vignola Elena,100 Dorso,77.35,340,no
+Trofeo Filippa,Belmare Diego,50 Farfalla,27.99,441,argento
+Trofeo Filippa,Belmare Diego,50 Stile Libero,26.13,441,argento
+Trofeo Filippa,Bolognesi Lorenzo,50 Rana,39.81,246,no
+Trofeo Filippa,Bolognesi Lorenzo,50 Stile Libero,31.07,262,no
+Trofeo Filippa,De Giorgi Alessandro,50 Farfalla,29.95,360,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana,33.08,429,oro
+Trofeo Filippa,Ingrosso Emma,50 Farfalla,35.44,299,no
+Trofeo Filippa,Ingrosso Emma,200 Stile Libero,157.38,335,no
+Trofeo Filippa,Lambertoni Giulia,50 Farfalla,37.21,259,no
+Trofeo Filippa,Lambertoni Giulia,50 Stile Libero,34.45,291,no
+Trofeo Filippa,Lucchese Camilla,200 Stile Libero,146.09,419,argento
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.42,361,bronzo
+Trofeo Filippa,Marchesi Tommaso,50 Dorso,33.98,275,oro
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero,28.33,346,argento
+Trofeo Filippa,Minervini Giada,50 Rana,41.61,316,no
+Trofeo Filippa,Minervini Giada,50 Stile Libero,32.42,349,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla,25.55,581,oro
+Trofeo Filippa,Oliaro Giulio,200 Stile Libero,122.78,518,oro
+Trofeo Filippa,Popescu Alejandro,50 Farfalla,34.82,229,no
+Trofeo Filippa,Popescu Alejandro,50 Stile Libero,29.40,310,bronzo
+Trofeo Filippa,Prudenzano Sofia,50 Dorso,44.71,179,no
+Trofeo Filippa,Prudenzano Sofia,50 Stile Libero,36.15,251,no
+Trofeo Filippa,Ruscelli Siria,50 Rana,36.63,464,oro
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero,29.94,443,no
+Trofeo Filippa,Vignola Elena,50 Dorso,33.66,421,oro
+Trofeo Filippa,Vignola Elena,50 Stile Libero,29.79,450,bronzo
+Trofeo Filippa,Lucchese Camilla,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Minervini Giada,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Belmare Diego,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Marchesi Tommaso,Mistaffetta 4x50 Misti,131.42,384,bronzo
+Trofeo Filippa,Lucchese Camilla,50 Dorso,35.85,348,no
+Trofeo Filippa,Minervini Giada,50 Rana lanciato,40.76,337,no
+Trofeo Filippa,Belmare Diego,50 Farfalla lanciato,27.46,468,no
+Trofeo Filippa,Marchesi Tommaso,50 Stile Libero lanciato,27.35,385,no
+Trofeo Filippa,Vignola Elena,Mistaffetta 4x50 Misti,00.00,0,no
+Trofeo Filippa,De Giorgi Alessandro,Mistaffetta 4x50 Misti,00.00,0,no
+Trofeo Filippa,Oliaro Giulio,Mistaffetta 4x50 Misti,00.00,0,no
+Trofeo Filippa,Ruscelli Siria,Mistaffetta 4x50 Misti,00.00,0,no
+Trofeo Filippa,De Giorgi Alessandro,50 Rana lanciato,31.81,482,no
+Trofeo Filippa,Oliaro Giulio,50 Farfalla lanciato,25.16,608,no
+Trofeo Filippa,Ruscelli Siria,50 Stile Libero lanciato,29.36,470,no
  </script>
 
  <script>
@@ -2368,7 +2409,9 @@ const mappa_gare = {
   "campionati nazionali estivi 2026 giorno 3": {data: "2026-06-14", piscina: "Riccione", vasca: 50},
   "2ª tappa coppa los angeles 2026/2027 giorno 1": {data: "2026-11-07", piscina: "Palazzo del Nuoto", vasca: 25},
   "2ª tappa coppa los angeles 2026/2027 giorno 2": {data: "2026-11-08", piscina: "Sisport", vasca: 25},
+  "trofeo filippa": {data: "2026-11-15", piscina: "Pinerolo", vasca: 25},
 };
+
 
 const sessoAtleti = {
       "bartalesi beatrice": "F", "bibbona lucia": "F", "damasio gaia ada": "F",
@@ -2465,7 +2508,7 @@ function normalizzaManifestazione(nome) {
 
   let recordStaffettaMappa = {};
   dati.forEach(d => {
-    if (d.gara.toLowerCase().includes("staffetta") && !isNaN(d.tempo)) {
+    if (d.gara.toLowerCase().includes("staffetta") && !isNaN(d.tempo) && d.tempo > 0) {
       let key = `${d.vasca}_${d.gara.toLowerCase()}`;
       if (!recordStaffettaMappa[key] || d.tempo < recordStaffettaMappa[key]) {
         recordStaffettaMappa[key] = d.tempo;
@@ -2504,6 +2547,10 @@ function normalizzaManifestazione(nome) {
 
   function getTagRecordStaffetta(tempo, vasca, tipoStaffetta, dataGara) {
     if (isNaN(tempo)) return "";
+    if (tempo === 0) {
+      return `<span class="tag-record-rosso">SQUALIFICATA</span>`;
+    }
+
     let key = `${vasca}_${tipoStaffetta.toLowerCase()}`;
     let recordAttuale = recordStaffettaMappa[key];
 
@@ -2514,7 +2561,8 @@ function normalizzaManifestazione(nome) {
     let staffettePrecedentiEStesse = dati.filter(d => 
       d.gara.toLowerCase() === tipoStaffetta.toLowerCase() &&
       d.vasca === vasca &&
-      d.data <= dataGara
+      d.data <= dataGara &&
+      d.tempo > 0
     );
 
     if (staffettePrecedentiEStesse.length > 0) {
@@ -2571,24 +2619,22 @@ function normalizzaManifestazione(nome) {
 
   selectManifestazione.addEventListener("change", mostraDettagliManifestazione);
 
-  // Controlla se nell'URL c'è una gara richiesta dal calendario
-window.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const garaRichiesta = params.get("gara");
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const garaRichiesta = params.get("gara");
 
-  if (garaRichiesta) {
-    const valorePulito = decodeURIComponent(garaRichiesta).trim().toLowerCase();
-    
-    // Cerca nel menu a tendina la gara corrispondente
-    for (let i = 0; i < selectManifestazione.options.length; i++) {
-      if (selectManifestazione.options[i].value.trim().toLowerCase() === valorePulito) {
-        selectManifestazione.selectedIndex = i;
-        mostraDettagliManifestazione(); // Apre subito la tabella della gara!
-        break;
+    if (garaRichiesta) {
+      const valorePulito = decodeURIComponent(garaRichiesta).trim().toLowerCase();
+      
+      for (let i = 0; i < selectManifestazione.options.length; i++) {
+        if (selectManifestazione.options[i].value.trim().toLowerCase() === valorePulito) {
+          selectManifestazione.selectedIndex = i;
+          mostraDettagliManifestazione();
+          break;
+        }
       }
     }
-  }
-});
+  });
 
   function mostraDettagliManifestazione() {
     const manifestazioneScelta = selectManifestazione.value;
@@ -2635,23 +2681,19 @@ window.addEventListener("DOMContentLoaded", () => {
           j++;
         }
 
-        // Estrae tutti i passaggi candidati successivi alla staffetta
         let passaggi = [];
         let pos = j;
         let nomiFrazionisti = componenti.map(c => c.nomeAtleta.toLowerCase());
         
         while (pos < righeManifestazione.length) {
           let rigaP = righeManifestazione[pos];
-          // Se inizia una nuova staffetta, stop
           if (rigaP.gara.toLowerCase().includes("staffetta")) {
             break;
           }
-          // Se la riga appartiene a uno dei frazionisti ed è un passaggio o gara lanciata/individuale immediata
           if (nomiFrazionisti.includes(rigaP.nomeAtleta.toLowerCase())) {
             passaggi.push(rigaP);
             indiciPassaggiUsati.add(rigaP.id);
           } else {
-            // Se incontra la gara di un atleta estraneo alla staffetta, interrompe il blocco passaggi
             break;
           }
           pos++;
@@ -2670,7 +2712,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Risoluzione per staffette fittizie 4x50
     blocchiStaffette.forEach(st => {
       if (st.passaggi.length === 0) {
         let staffetta8x50Stile = blocchiStaffette.find(b => b.tipo.toLowerCase().includes("8x50") && b.passaggi.length > 0);
@@ -2687,7 +2728,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Le gare individuali VERE escludono rigorosamente le staffette, i passaggi abbinati e qualsiasi riga che contenga "lanciato"
     let individuali = righeManifestazione.filter(d => 
       !d.gara.toLowerCase().includes("staffetta") && 
       !d.gara.toLowerCase().includes("lanciato") &&
@@ -2695,7 +2735,6 @@ window.addEventListener("DOMContentLoaded", () => {
       !indiciPassaggiUsati.has(d.id)
     );
 
-    // --- TABELLA GARE INDIVIDUALI ---
     if (individuali.length > 0) {
       html += `<div class="sezione-titolo">Gare individuali: ${manifestazioneScelta} (Vasca ${vascaEvento}m)</div>`;
       html += `<table>
@@ -2746,7 +2785,6 @@ window.addEventListener("DOMContentLoaded", () => {
       html += `</tbody></table>`;
     }
 
-    // --- TABELLA STAFFETTE CON PASSAGGI COMPLETI ---
     if (blocchiStaffette.length > 0) {
       html += `<div class="sezione-titolo">Staffette: ${manifestazioneScelta} (Vasca ${vascaEvento}m)</div>`;
       
@@ -2762,10 +2800,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
       blocchiStaffette.forEach(st => {
         let tagRecordStaffetta = getTagRecordStaffetta(st.tempo, vascaEvento, st.tipo, st.data);
+        let tempoMostrato = st.tempo === 0 ? "SQ" : formattaTempo(st.tempo);
 
         html += `<tr>
           <td><strong>${formattaGaraTitleCase(st.tipo)}</strong>${tagRecordStaffetta}</td>
-          <td><strong>${formattaTempo(st.tempo)}</strong></td>
+          <td><strong>${tempoMostrato}</strong></td>
           <td><strong>${st.punti}</strong></td>
         </tr>
         <tr>
@@ -2774,8 +2813,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
         st.componenti.forEach((comp, idx) => {
           let nomeFrazionista = comp.nomeAtleta;
-          
-          // Cerca il passaggio corrispondente ESATTAMENTE per NOME dell'atleta
           let pass = st.passaggi.find(p => p.nomeAtleta.toLowerCase() === nomeFrazionista.toLowerCase());
 
           let strPassaggio = "";
